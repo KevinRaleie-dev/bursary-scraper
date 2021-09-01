@@ -4,7 +4,7 @@ I built a simple script for fetching / scraping closing bursaries for the month 
 
 Its pretty basic but gets the job done. Might convert this over to an API.
 
-###Built with 🧑🏽‍💻:
+### Built with 🧑🏽‍💻:
 
 > Node.js, cheerio and axios
 
