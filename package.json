@@ -1,15 +1,16 @@
 {
   "name": "scrape",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "main.js",
   "license": "MIT",
   "scripts": {
-    "start": "node index.js",
-    "lint:fix": "eslint .eslintrc.js && eslint 'index.js' --quiet --fix"
+    "start": "node src/main.js",
+    "lint:fix": "eslint .eslintrc.js && eslint 'src/**/*.js' --quiet --fix"
   },
   "dependencies": {
     "axios": "^0.21.1",
-    "cheerio": "^1.0.0-rc.10"
+    "cheerio": "^1.0.0-rc.10",
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
