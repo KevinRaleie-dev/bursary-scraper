@@ -9,13 +9,15 @@ Converted the script into an API. Will be building a frontend to integrate with 
 
 ### Built with 🧑🏽‍💻:
 
-> Node.js, cheerio, axios, express
+> Node.js, cheerio, axios, express, jest & supertest
 
 - ```yarn install``` installs dependencies
 
 - ```yarn start``` to run
 
 - ```yarn lint:fix``` to lint and fix eslint rules
+
+- ```yarn test``` to run tests
 
 Made with ❤️ by Kevin Raleie
 
