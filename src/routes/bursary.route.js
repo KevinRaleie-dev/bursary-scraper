@@ -8,11 +8,11 @@ const router = express.Router();
 
 // TODO: get the month from the request body, fetch and respond
 //  with the bursary data
-router.post('/bursaries', async (req, res) => {
+router.post('/', async (req, res) => {
   const {month} = req.body;
 
   if (!month) {
-    return res.statusCode(404).json({
+    return res.status(404).json({
       success: false,
       message: 'Please enter a valid month, bursary month cannot be empty.',
     });
@@ -32,12 +32,12 @@ router.post('/bursaries', async (req, res) => {
       firstTen,
     };
 
-    return res.statusCode(200).json({
+    return res.status(200).json({
       success: true,
       ...data,
     });
   } catch (error) {
-    return res.statusCode(500).json({
+    return res.status(500).json({
       success: false,
       message: error.message,
     });
