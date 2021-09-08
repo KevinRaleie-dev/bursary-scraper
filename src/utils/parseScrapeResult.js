@@ -24,6 +24,12 @@ const parseResult = (data) => {
       alwaysOpen.push(bursaries[index]);
     }
   }
+  for (let i = 0; i < bursaries.length; i++) {
+    if (!bursaries[i].includes('closing') &&
+    !bursaries[i].includes('Closing')) {
+      bursaries.length = i;
+    }
+  }
 
   return {
     title,
