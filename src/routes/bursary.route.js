@@ -2,6 +2,7 @@ const express = require('express');
 const getBursaryDataByMonth = require('../utils/getBursaryDataByMonth');
 const getBursaryData = require('../utils/getBursaryData');
 const parseResult = require('../utils/parseScrapeResult');
+const {arrOfBursaryObjects} = require('../utils/arrOfBursaryObjects');
 
 // eslint-disable-next-line new-cap
 const router = express.Router();
@@ -23,11 +24,12 @@ router.post('/', async (req, res) => {
     const response = await getBursaryData(url);
     const {alwaysOpen, bursaries, title} = parseResult(response);
 
-    const firstTen = bursaries.slice(3, 13);
+    const bursary = arrOfBursaryObjects(bursaries);
+    const firstTen = bursary.slice(3, 13);
 
     const data = {
       title,
-      bursaries,
+      bursaries: bursary,
       alwaysOpen,
       firstTen,
     };
