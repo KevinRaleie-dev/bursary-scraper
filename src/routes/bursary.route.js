@@ -22,14 +22,14 @@ router.post('/', async (req, res) => {
   try {
     const url = getBursaryDataByMonth(month);
     const response = await getBursaryData(url);
-    const {alwaysOpen, bursaries, title} = parseResult(response);
+    const {title, bursaries, alwaysOpen, links} = parseResult(response);
 
-    const bursary = arrOfBursaryObjects(bursaries);
-    const firstTen = bursary.slice(3, 13);
+    const bursaryList = arrOfBursaryObjects(bursaries, links);
+    const firstTen = bursaryList.slice(3, 13);
 
     const data = {
       title,
-      bursaries: bursary,
+      bursaries: bursaryList,
       alwaysOpen,
       firstTen,
     };
@@ -39,9 +39,10 @@ router.post('/', async (req, res) => {
       ...data,
     });
   } catch (error) {
+    console.log(error);
     return res.status(500).json({
       success: false,
-      message: error.message,
+      message: 'Something went wrong.',
     });
   }
 });

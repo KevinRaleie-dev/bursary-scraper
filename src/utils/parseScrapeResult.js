@@ -4,7 +4,7 @@ const cheerio = require('cheerio');
  * @description This function is used to parse the html given in the parameter
  * in order to return the list bursaries, title, bursaries that are always open.
  * @param {string} data
- * @return {object} {title, bursaries, alwaysOpen}
+ * @return {object} {title, bursaries, alwaysOpen, links}
  */
 const parseResult = (data) => {
   const $ = cheerio.load(data);
@@ -14,6 +14,13 @@ const parseResult = (data) => {
   $('.entry-content > ul > li').each((_idx, el) => {
     const bursary = $(el).text();
     bursaries.push(bursary);
+  });
+
+  // TODO: fetch links for each bursary
+  const links = [];
+  $('.entry-content > ul > li > strong > a').each((_, el) => {
+    const link = $(el).attr('href');
+    links.push(link);
   });
 
   // find bursaries that are open all year round
@@ -34,6 +41,7 @@ const parseResult = (data) => {
   return {
     title,
     bursaries,
+    links,
     alwaysOpen,
   };
 };

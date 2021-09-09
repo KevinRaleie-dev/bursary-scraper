@@ -7,13 +7,7 @@ describe('POST /bursary', () => {
         .post('/bursaries')
         .send({month: 'september'})
         .set('Accept', 'application/json')
-        .expect(200, {
-          success: true,
-          title: 'some title',
-          bursaries: [],
-          alwaysOpen: [],
-          firstTen: [],
-        });
+        .expect(200);
   });
 });
 

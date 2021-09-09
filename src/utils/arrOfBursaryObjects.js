@@ -2,15 +2,20 @@ const sanitize = require('./santizeData');
 
 /**
  *
- * @param {Array<string>} arr
+ * @param {Array<string>} bursaries
+ * @param {Array<string>} urlLinks
  * @return {Array<{}>}
  */
-function arrOfBursaryObjects(arr) {
+function arrOfBursaryObjects(bursaries, urlLinks) {
   const arrOfObj = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    const obj = sanitize(arr[i]);
+  for (const bursary of bursaries) {
+    const obj = sanitize(bursary);
     arrOfObj.push(obj);
+  }
+
+  for (let i = 0; i < arrOfObj.length; i++) {
+    arrOfObj[i].link = urlLinks[i];
   }
 
   return arrOfObj;

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "test": "jest",
-    "lint:fix": "eslint .eslintrc.js && eslint 'src/**/*.js' --quiet --fix"
+    "lint:fix": "eslint .eslintrc.js && eslint 'src/**/*.js' --quiet --fix",
+    "dev:test": "node test.js"
   },
   "dependencies": {
     "axios": "^0.21.1",

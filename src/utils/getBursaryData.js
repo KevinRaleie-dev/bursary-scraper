@@ -7,8 +7,6 @@ const axios = require('axios').default;
  * @return {Promise<object>} axios data object
  */
 const getBursaryData = async (url) => {
-  console.log('Busy crawling the web..🕷');
-
   try {
     const {data} = await axios.get(url);
     return data;

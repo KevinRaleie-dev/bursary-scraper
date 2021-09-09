@@ -5,5 +5,7 @@ test('should sanitize a string and return as an object', () => {
   const obj = sanitize(exampleText);
   expect(obj).toEqual({
     closing: '15 November 2021',
-    name: 'Zutari Bursary'});
+    name: 'Zutari Bursary',
+    link: '',
+  });
 });
