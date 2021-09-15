@@ -1,36 +1,33 @@
+const {months} = require('../constants');
 /**
- * @description This function returns an array of bursaries with the specified
- * month
+ * @description This function returns a URL to be used to fetch data from.
  * @param {string} bursaryMonth
  * @return {string} URL for the specified month
  */
 const getBursaryDataByMonth = (bursaryMonth) => {
-  let error = '';
-  const bm = bursaryMonth.toLowerCase();
+  const burMonth = bursaryMonth.toLowerCase();
+  const dataObj = {
+    error: '',
+    moty: burMonth,
+    months: [],
+    url: '',
+  };
 
-  const getMonths = Array.from({length: 12}, (e, i) => {
-    const moty = new Date(null, i + 1, null)
-        .toLocaleDateString('en', {month: 'long'});
-    return moty;
-  });
-
-  const months = [];
-
-  for (let index = 0; index < getMonths.length; index += 1) {
-    const element = getMonths[index].toLowerCase();
-    months.push(element);
+  for (let index = 0; index < months.length; index += 1) {
+    const element = months[index].toLowerCase();
+    dataObj.months.push(element);
   }
 
-  const found = months.find((month) => month === bm);
+  const findMonth = dataObj.months.find((month) => month === dataObj.moty);
 
-  if (!found) {
-    error = 'Could not find ' + bursaryMonth;
+  if (!findMonth) {
+    dataObj.error = 'Could not find ' + bursaryMonth;
     return error;
   }
 
-  const url = `https://www.zabursaries.co.za/bursaries-closing-in-${found}-2021/`;
+  dataObj.url = `https://www.zabursaries.co.za/bursaries-closing-in-${findMonth}-2021/`;
 
-  return url;
+  return dataObj.url;
 };
 
 module.exports = getBursaryDataByMonth;

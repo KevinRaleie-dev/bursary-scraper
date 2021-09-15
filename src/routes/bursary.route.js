@@ -2,6 +2,7 @@ const express = require('express');
 const getBursaryDataByMonth = require('../utils/getBursaryDataByMonth');
 const getBursaryData = require('../utils/getBursaryData');
 const parseResult = require('../utils/parseScrapeResult');
+const findMonth = require('../utils/findMonth');
 const {arrOfBursaryObjects} = require('../utils/arrOfBursaryObjects');
 
 // eslint-disable-next-line new-cap
@@ -10,12 +11,14 @@ const router = express.Router();
 // TODO: get the month from the request body, fetch and respond
 //  with the bursary data
 router.post('/', async (req, res) => {
-  const {month} = req.body;
+  const {searchText} = req.body;
+
+  const month = findMonth(searchText);
 
   if (!month) {
-    return res.status(404).json({
+    return res.status(400).json({
       success: false,
-      message: 'Could not find the bursaries that matched your request.',
+      message: 'Bad request.',
     });
   }
 
@@ -29,7 +32,7 @@ router.post('/', async (req, res) => {
 
     const data = {
       title,
-      bursaries: bursaryList,
+      bursaryList,
       alwaysOpen,
       firstTen,
     };
