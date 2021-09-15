@@ -4,45 +4,49 @@ const cheerio = require('cheerio');
  * @description This function is used to parse the html given in the parameter
  * in order to return the list bursaries, title, bursaries that are always open.
  * @param {string} data
- * @return {object} {title, bursaries, alwaysOpen, links}
+ * @return {object} returns an object containing the title, bursaries,
+ * links and always open bursaries
  */
 const parseResult = (data) => {
   const $ = cheerio.load(data);
+  const bursaryObj = {
+    title: '',
+    bursaries: [],
+    links: [],
+    alwaysOpen: [],
+  };
 
-  const bursaries = [];
-  const title = $('.entry-content > h1').text();
-  $('.entry-content > ul > li').each((_idx, el) => {
+  bursaryObj.title = $('.entry-content > h1').text();
+
+  $('.entry-content > ul > li').each((_, el) => {
     const bursary = $(el).text();
-    bursaries.push(bursary);
+    bursaryObj.bursaries.push(bursary);
   });
 
-  // TODO: fetch links for each bursary
-  const links = [];
+  // fetch links for each bursary
   $('.entry-content > ul > li > strong > a').each((_, el) => {
     const link = $(el).attr('href');
-    links.push(link);
+    bursaryObj.links.push(link);
   });
 
   // find bursaries that are open all year round
-  const alwaysOpen = [];
-  for (let index = 0; index < bursaries.length; index += 1) {
-    if (!bursaries[index].includes('closing') &&
-  !bursaries[index].includes('Closing')) {
-      alwaysOpen.push(bursaries[index]);
+  for (let index = 0; index < bursaryObj.bursaries.length; index += 1) {
+    if (!bursaryObj.bursaries[index].includes('closing') &&
+  !bursaryObj.bursaries[index].includes('Closing')) {
+      bursaryObj.alwaysOpen.push(bursaryObj.bursaries[index]);
     }
   }
-  for (let i = 0; i < bursaries.length; i++) {
-    if (!bursaries[i].includes('closing') &&
-    !bursaries[i].includes('Closing')) {
-      bursaries.length = i;
+
+  // cap the list of bursaries that are only open for a certain time
+  for (let i = 0; i < bursaryObj.bursaries.length; i++) {
+    if (!bursaryObj.bursaries[i].includes('closing') &&
+    !bursaryObj.bursaries[i].includes('Closing')) {
+      bursaryObj.bursaries.length = i;
     }
   }
 
   return {
-    title,
-    bursaries,
-    links,
-    alwaysOpen,
+    ...bursaryObj,
   };
 };
 

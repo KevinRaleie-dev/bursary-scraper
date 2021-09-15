@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
   if (!month) {
     return res.status(404).json({
       success: false,
-      message: 'Please enter a valid month, bursary month cannot be empty.',
+      message: 'Could not find the bursaries that matched your request.',
     });
   }
 

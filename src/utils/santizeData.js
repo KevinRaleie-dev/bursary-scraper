@@ -1,12 +1,12 @@
 /**
  * @description This function takes in a string and returns an object
  * @param {string} bursary
- * @return {object}
+ * @return {object} returns a bursary object
  */
 function santize(bursary) {
   const text = bursary.split('(').join('').split(')').join('');
   const textArray = text.split(' ');
-  const obj = {
+  const singleBursaryObject = {
     closing: '',
     name: '',
     link: '',
@@ -14,13 +14,14 @@ function santize(bursary) {
 
   for (let i = 0; i < textArray.length; i += 1) {
     if (textArray[i] === 'closing:' || textArray[i] === 'Closing:') {
-      obj.closing = textArray.slice(i + 1).join(' ');
+      singleBursaryObject.closing = textArray.slice(i + 1).join(' ');
       textArray.length = i;
-      obj.name = textArray.join(' ');
+      singleBursaryObject.name = textArray.join(' ');
     }
   }
+
   return {
-    ...obj,
+    ...singleBursaryObject,
   };
 }
 

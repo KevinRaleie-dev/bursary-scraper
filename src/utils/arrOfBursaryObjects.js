@@ -4,7 +4,7 @@ const sanitize = require('./santizeData');
  *
  * @param {Array<string>} bursaries
  * @param {Array<string>} urlLinks
- * @return {Array<{}>}
+ * @return {Array<{}>} an array of bursary objects
  */
 function arrOfBursaryObjects(bursaries, urlLinks) {
   const arrOfObj = [];
