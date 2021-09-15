@@ -7,6 +7,9 @@ Its pretty basic but gets the job done. Might convert this over to an API.
 <b>Update:</b>
 Converted the script into an API. Will be building a frontend to integrate with it.
 
+### New features ⚡️:
+- Try searching for "bursaries that are closing in September" 🤫
+
 ### Built with 🧑🏽‍💻:
 
 > Node.js, cheerio, axios, express, jest & supertest
