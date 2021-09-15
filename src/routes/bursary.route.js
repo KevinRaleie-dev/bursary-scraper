@@ -10,8 +10,8 @@ const router = express.Router();
 
 // TODO: get the month from the request body, fetch and respond
 //  with the bursary data
-router.post('/', async (req, res) => {
-  const {searchText} = req.body;
+router.get('/', async (req, res) => {
+  const {searchText} = req.query;
 
   const month = findMonth(searchText);
 
@@ -25,7 +25,7 @@ router.post('/', async (req, res) => {
   try {
     const url = getBursaryDataByMonth(month);
     const response = await getBursaryData(url);
-    const {title, bursaries, alwaysOpen, links} = parseResult(response);
+    const {title, bursaries, alwaysOpen, links} = await parseResult(response);
 
     const bursaryList = arrOfBursaryObjects(bursaries, links);
     const firstTen = bursaryList.slice(3, 13);
