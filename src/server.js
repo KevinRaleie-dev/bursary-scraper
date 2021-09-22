@@ -1,7 +1,7 @@
 const app = require('./main');
 
 (async function server() {
-  const PORT = 5000;
+  const PORT = 4000;
   const serverURL = `http://localhost:${PORT}`;
 
   app.listen(PORT, () => {
