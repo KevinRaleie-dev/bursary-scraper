@@ -11,9 +11,9 @@ const router = express.Router();
 // TODO: get the month from the request body, fetch and respond
 //  with the bursary data
 router.get('/', async (req, res) => {
-  const {searchText} = req.query;
+  const {search} = req.query;
 
-  const month = findMonth(searchText);
+  const month = findMonth(search);
 
   if (!month) {
     return res.status(400).json({
