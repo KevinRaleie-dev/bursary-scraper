@@ -9,8 +9,7 @@
   "scripts": {
     "start": "node server.js",
     "test": "jest",
-    "lint:fix": "eslint .eslintrc.js && eslint 'src/**/*.js' --quiet --fix",
-    "dev:test": "node test.js"
+    "lint:fix": "eslint .eslintrc.js && eslint 'src/**/*.js' --quiet --fix"
   },
   "dependencies": {
     "axios": "^0.21.1",

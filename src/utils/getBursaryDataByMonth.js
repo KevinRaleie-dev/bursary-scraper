@@ -22,7 +22,7 @@ const getBursaryDataByMonth = (bursaryMonth) => {
 
   if (!findMonth) {
     dataObj.error = 'Could not find ' + bursaryMonth;
-    return error;
+    return dataObj.error;
   }
 
   dataObj.url = `https://www.zabursaries.co.za/bursaries-closing-in-${findMonth}-2021/`;
