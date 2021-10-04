@@ -15,7 +15,7 @@ app.use(morgan('tiny'));
 
 app.use(rateLimit({
   windowMs: 5 * 60 * 1000,
-  max: 10,
+  max: 100,
 }));
 
 app.get('/', (_, res) => {
