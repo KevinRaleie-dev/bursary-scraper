@@ -6,7 +6,7 @@
 function santize(bursary) {
   const text = bursary.split('(').join('').split(')').join('');
   const textArray = text.split(' ');
-  const singleBursaryObject = {
+  const bursaryObject = {
     closing: '',
     name: '',
     link: '',
@@ -14,14 +14,14 @@ function santize(bursary) {
 
   for (let i = 0; i < textArray.length; i += 1) {
     if (textArray[i] === 'closing:' || textArray[i] === 'Closing:') {
-      singleBursaryObject.closing = textArray.slice(i + 1).join(' ');
+      bursaryObject.closing = textArray.slice(i + 1).join(' ');
       textArray.length = i;
-      singleBursaryObject.name = textArray.join(' ');
+      bursaryObject.name = textArray.join(' ');
     }
   }
 
   return {
-    ...singleBursaryObject,
+    ...bursaryObject,
   };
 }
 

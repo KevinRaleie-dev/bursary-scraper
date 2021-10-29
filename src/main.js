@@ -7,7 +7,7 @@ const bursary = require('./routes/bursary.route');
 const app = express();
 
 app.use(cors({
-  origin: 'https://bursary-findr.netlify.app',
+  origin: process.env.PROD_CLIENT_URL,
 }));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
