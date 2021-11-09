@@ -8,7 +8,9 @@ Its pretty basic but gets the job done. Might convert this over to an API.
 Converted the script into an API. Will be building a frontend to integrate with it.
 
 ### New features ⚡️:
-- Try searching for "bursaries that are closing in September" 🤫
+- Try searching for "bursaries that are closing in November" 🤫
+- You can now search for bursaries closing in 2022 🔥
+    - For now its only for the months of January and February.
 
 ### Built with 🧑🏽‍💻:
 
