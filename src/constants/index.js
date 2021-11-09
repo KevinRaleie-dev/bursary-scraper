@@ -6,7 +6,7 @@ const months = Array.from({length: 12}, (e, i) => {
 });
 const sampleMonths = [
   'january',
-  'febuary',
+  'february',
   'march',
   'april',
   'may',
