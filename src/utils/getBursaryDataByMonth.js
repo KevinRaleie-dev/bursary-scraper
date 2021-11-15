@@ -2,7 +2,7 @@ const {months} = require('../constants');
 /**
  * @description This function returns a URL to be used to fetch data from.
  * @param {string} month
- * @return {string} URL for the specified month
+ * @return {object} URLS for the specified month and year
  */
 const getBursaryDataByMonth = (month) => {
   const bursaryMonth = month.toLowerCase();
@@ -10,7 +10,10 @@ const getBursaryDataByMonth = (month) => {
     error: '',
     bursaryMonth,
     months: [],
-    urls: [],
+    urls: {
+      t1: '',
+      t2: '',
+    },
   };
 
   for (let index = 0; index < months.length; index += 1) {
@@ -25,10 +28,12 @@ const getBursaryDataByMonth = (month) => {
     return data.error;
   }
 
-  data.urls.push(`https://www.zabursaries.co.za/bursaries-closing-in-${findMonth}-2021/`);
-  data.urls.push(`https://www.zabursaries.co.za/bursaries-closing-in-${findMonth}-2022/`);
+  data.urls.t1 = `https://www.zabursaries.co.za/bursaries-closing-in-${findMonth}-2021/`;
+  data.urls.t2 = `https://www.zabursaries.co.za/bursaries-closing-in-${findMonth}-2022/`;
 
-  return [data.urls[0], data.urls[1]];
+  return {
+    ...data.urls,
+  };
 };
 
 module.exports = getBursaryDataByMonth;

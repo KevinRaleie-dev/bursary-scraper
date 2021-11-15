@@ -10,7 +10,7 @@ const router = express.Router();
 // return a list of bursaries for the 2022 year
 
 router.get('/', async (req, res) => {
-  const {search} = req.query;
+  const search = req.query.search;
 
   const month = findMonth(search);
 
@@ -22,8 +22,9 @@ router.get('/', async (req, res) => {
       });
     }
     try {
-      const [, newBursariesUrl] = getBursaryDataByMonth(month);
-      const data = await getData(newBursariesUrl);
+      // fetch bursaries for the year 2022
+      const urls = getBursaryDataByMonth(month);
+      const data = await getData(urls['t2']);
       return res.status(200).json({
         success: true,
         ...data,
@@ -37,8 +38,8 @@ router.get('/', async (req, res) => {
   } else {
     // fetch bursaries for the year 2021
     try {
-      const url = getBursaryDataByMonth(month);
-      const data = await getData(url[0]);
+      const urls = getBursaryDataByMonth(month);
+      const data = await getData(urls['t1']);
       return res.status(200).json({
         success: true,
         ...data,

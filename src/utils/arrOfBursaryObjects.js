@@ -7,18 +7,19 @@ const sanitize = require('./santizeData');
  * @return {Array<{}>} an array of bursary objects
  */
 function arrOfBursaryObjects(bursaries, urlLinks) {
-  const arrOfObj = [];
+  const bursaryObjectArray = [];
 
   for (const bursary of bursaries) {
     const obj = sanitize(bursary);
-    arrOfObj.push(obj);
+    bursaryObjectArray.push(obj);
   }
 
-  for (let i = 0; i < arrOfObj.length; i++) {
-    arrOfObj[i].link = urlLinks[i];
+  // eslint-disable-next-line guard-for-in
+  for (const index in bursaryObjectArray) {
+    bursaryObjectArray[index].link = urlLinks[index];
   }
 
-  return arrOfObj;
+  return bursaryObjectArray;
 }
 
 module.exports = {

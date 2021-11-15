@@ -8,16 +8,13 @@ const {arrOfBursaryObjects} = require('../utils/arrOfBursaryObjects');
  */
 async function getData(url) {
   const response = await getBursaryData(url);
-  const {title, bursaries, alwaysOpen, links} = await parseResult(response);
+  const {title, bursaries, links} = await parseResult(response);
 
   const bursaryList = arrOfBursaryObjects(bursaries, links);
-  const firstTen = bursaryList.slice(3, 13);
 
   const data = {
     title,
     bursaryList,
-    alwaysOpen,
-    firstTen,
   };
 
   return data;

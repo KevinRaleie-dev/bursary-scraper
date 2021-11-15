@@ -9,44 +9,35 @@ const cheerio = require('cheerio');
  */
 const parseResult = (data) => {
   const $ = cheerio.load(data);
-  const bursaryObj = {
+  const bursaryData = {
     title: '',
     bursaries: [],
     links: [],
-    alwaysOpen: [],
   };
 
-  bursaryObj.title = $('.entry-content > h1').text();
+  bursaryData.title = $('.entry-content > h1').text();
 
   $('.entry-content > ul > li').each((_, el) => {
     const bursary = $(el).text();
-    bursaryObj.bursaries.push(bursary);
+    bursaryData.bursaries.push(bursary);
   });
 
   // fetch links for each bursary
   $('.entry-content > ul > li > strong > a').each((_, el) => {
     const link = $(el).attr('href');
-    bursaryObj.links.push(link);
+    bursaryData.links.push(link);
   });
 
-  // find bursaries that are open all year round
-  for (let index = 0; index < bursaryObj.bursaries.length; index += 1) {
-    if (!bursaryObj.bursaries[index].includes('closing') &&
-  !bursaryObj.bursaries[index].includes('Closing')) {
-      bursaryObj.alwaysOpen.push(bursaryObj.bursaries[index]);
-    }
-  }
-
   // cap the list of bursaries that are only open for a certain time
-  for (let i = 0; i < bursaryObj.bursaries.length; i++) {
-    if (!bursaryObj.bursaries[i].includes('closing') &&
-    !bursaryObj.bursaries[i].includes('Closing')) {
-      bursaryObj.bursaries.length = i;
+  for (const index in bursaryData.bursaries) {
+    if (!bursaryData.bursaries[index].includes('closing') &&
+    !bursaryData.bursaries[index].includes('Closing')) {
+      bursaryData.bursaries.length = index;
     }
   }
 
   return {
-    ...bursaryObj,
+    ...bursaryData,
   };
 };
 
