@@ -12,7 +12,7 @@ function santize(bursary) {
     link: '',
   };
 
-  for (const index in titleArray) {
+  for (let index = 0; index < titleArray.length; index++) {
     if (titleArray[index] === 'closing:' || titleArray[index] === 'Closing:') {
       bursaryObject.closing = titleArray.slice(index + 1).join(' ');
       titleArray.length = index;
