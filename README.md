@@ -27,4 +27,6 @@ You can now only fetch bursaries for the year of 2022 🥳
 
 - ```yarn test``` to run tests
 
+### Planning a rebuild with TypeScript 🤞🏽
+
 Made with ❤️ by Kevin Raleie
