@@ -1,4 +1,4 @@
-const {sampleMonths} = require('../constants');
+const {sampleMonths} = require('../constants/mod');
 /**
  *
  * @param {string} searchText

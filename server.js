@@ -1,5 +1,5 @@
 require('dotenv/config');
-const app = require('./src/main');
+const app = require('./src/app');
 
 // eslint-disable-next-line require-jsdoc
 function server() {

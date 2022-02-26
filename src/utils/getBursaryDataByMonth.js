@@ -1,4 +1,4 @@
-const {months} = require('../constants');
+const {months} = require('../constants/mod');
 /**
  * @description This function returns a URL to be used to fetch data from.
  * @param {string} month
