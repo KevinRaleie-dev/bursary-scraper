@@ -9,6 +9,7 @@
     "watch": "tsc -w",
     "build": "tsc",
     "start": "node dist/server.js",
+    "ts:start": "ts-node src/server.ts",
     "test": "jest",
     "lint:fix": "eslint .eslintrc.js && eslint 'src/**/*.js' --quiet --fix"
   },
@@ -19,7 +20,8 @@
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
     "express-rate-limit": "^6.6.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "ts-node": "^10.9.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.12",
