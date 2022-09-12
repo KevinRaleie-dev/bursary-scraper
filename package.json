@@ -1,7 +1,6 @@
 {
   "name": "scrape",
   "version": "1.0.0",
-  "main": "server.js",
   "license": "MIT",
   "engines": {
     "node": ">= 12.0.0"
