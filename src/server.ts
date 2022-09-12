@@ -1,5 +1,5 @@
-require('dotenv/config');
-const app = require('./src/app');
+import "dotenv/config";
+import { app } from "./app";
 
 // eslint-disable-next-line require-jsdoc
 function server() {
@@ -7,7 +7,7 @@ function server() {
   const serverURL = `http://localhost:${PORT}`;
 
   app.listen(PORT, () => {
-    console.log(`Server is running on ${serverURL}`);
+    console.info(`Server is running on ${serverURL}`);
   });
 }
 

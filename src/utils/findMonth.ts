@@ -1,14 +1,10 @@
-const {sampleMonths} = require('../constants/mod');
-/**
- *
- * @param {string} searchText
- * @return {string} returns the month from the searchText
- */
-function findMonth(searchText) {
+import { sampleMonths } from "../constants/mod";
+
+export function find_month(searchText: string): string {
   const myMonthSet = new Set();
-  let month = '';
+  let month = "";
   const words = searchText.toLowerCase().trim();
-  const searchWords = words.split(' ');
+  const searchWords = words.split(" ");
   for (let i = 0; i < sampleMonths.length; i += 1) {
     myMonthSet.add(sampleMonths[i]);
   }
@@ -19,5 +15,3 @@ function findMonth(searchText) {
   }
   return month;
 }
-
-module.exports = findMonth;
