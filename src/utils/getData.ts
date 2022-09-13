@@ -4,7 +4,7 @@ import { parse_result } from "../utils/parseScrapeResult";
 import { get_application_links } from "./getApplicationLinks";
 import type { Bursary } from "./sanitizeData";
 
-type Data = {
+export type Data = {
   title: string;
   bursaryList: Bursary[];
   links: string[];

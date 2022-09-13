@@ -1,57 +1,66 @@
 import express from "express";
 import { find_month } from "../utils/findMonth";
 import { get_bursary_data_by_month } from "../utils/getBursaryDataByMonth";
-import { get_data } from "../utils/getData";
+import { Data, get_data } from "../utils/getData";
 
 const router = express.Router();
 
-router.get(
-  "/:bursaryMonthSearch",
-  async (req: express.Request, res: express.Response) => {
-    const search = req.params.bursaryMonthSearch;
+const cache = new Map<string, Data>();
 
-    const month = find_month(search);
+router.get(
+  "/:bursaryMonth",
+  async (req: express.Request, res: express.Response) => {
+    const param = req.params.bursaryMonth;
+
+    const month = find_month(param);
 
     if (!month) {
-     res.status(400).json({
+      res.status(404).json({
         success: false,
         message:
           "We could not find bursaries for the month you were looking for.",
       });
     }
-      // fetch bursaries for the year 2022
-	  try {
+    try {
+      const cache_time_start = Date.now();
+      const check_cache = cache.has(month);
+      const cache_time_end = Date.now() - cache_time_start;
 
-		const url = get_bursary_data_by_month(month);
-		const start_time = Date.now();
-		const { title, bursaryList } = await get_data(url);
-		const end_time = Date.now() - start_time;
+      if (check_cache) {
+        console.log("im in the cache");
+        const data = cache.get(month);
 
-		if (title) {
-			res.status(200).json({
-				success: true,
-				results: bursaryList.length,
-				time: `${end_time} seconds`,
-				title,
-				bursaryList
-			})
-		}
-		else {
-			res.status(404).json({
-				success: false,
-				message: "Could not find what you were looking for"
-			})
-		}
-	  }
-	  catch(error) {
-		res.status(500).json({
-			success: false,
-			message: error.message
-		})
-	  }
-	  
+        res.status(200).json({
+          success: true,
+          results: data?.bursaryList.length,
+          time: cache_time_end,
+          title: data?.title,
+          bursaryList: data?.bursaryList,
+        });
+      } else {
+        console.log("im not in the cache");
+        const url = get_bursary_data_by_month(month);
+        const start_time = Date.now();
+        const { title, bursaryList, links } = await get_data(url);
+        const end_time = Date.now() - start_time;
+
+        cache.set(month, { title, bursaryList, links });
+
+        res.status(200).json({
+          success: true,
+          results: bursaryList.length,
+          time: `${end_time} seconds`,
+          title: title,
+          bursaryList: bursaryList,
+        });
+      }
+    } catch (error) {
+      res.status(500).json({
+        success: false,
+        message: error.message,
+      });
+    }
   }
 );
 
 export default router;
-
