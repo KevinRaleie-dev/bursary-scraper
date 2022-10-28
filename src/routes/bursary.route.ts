@@ -27,18 +27,16 @@ router.get(
       const cache_time_end = Date.now() - cache_time_start;
 
       if (check_cache) {
-        console.log("im in the cache");
         const data = cache.get(month);
 
         res.status(200).json({
           success: true,
           results: data?.bursaryList.length,
-          time: cache_time_end,
+          time: `${cache_time_end} seconds`,
           title: data?.title,
           bursaryList: data?.bursaryList,
         });
       } else {
-        console.log("im not in the cache");
         const url = get_bursary_data_by_month(month);
         const start_time = Date.now();
         const { title, bursaryList, links } = await get_data(url);
