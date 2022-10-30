@@ -6,8 +6,9 @@ export async function get_application_links(
 ): Promise<string[]> {
   const applicationLinks: string[] = [];
   const requests: Promise<AxiosResponse<any, any>>[] = [];
+  const n = links.length;
 
-  for (let i = 0; i < links.length; i++) {
+  for (let i = 0; i < n; i++) {
     const request = axios.get(links[i]);
     requests.push(request);
   }
