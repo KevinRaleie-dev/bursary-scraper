@@ -1,7 +1,4 @@
-import { get_course_links } from "./getCourseLinks"
-
-export async function course_tags() {
-	const links = await get_course_links()
+export function course_tags(links: string[]) {
 	const tags: string[] = []
 
 	for (const link of links) {
