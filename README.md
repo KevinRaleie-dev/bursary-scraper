@@ -20,8 +20,11 @@ You can now only fetch bursaries for the year of 2022 🥳
 
 - ```yarn start``` to run
 
-- Once started you can access the server on <http://localhost:4000/bursaries?search>=
-``` search=your-month-here ``` being your search path / query. Make a GET request and you'll get some data back if its available.
+### Once the API is running you can test
+
+- ```localhost:4000/bursaries/{month}```
+- ```localhost:4000/course/{course tag}```
+- ```localhost:4000/courses/all```
 
 - ```yarn lint:fix``` to lint and fix eslint rules
 
