@@ -1,5 +1,5 @@
 export type Bursary = {
-  closing: string;
+  closing?: string;
   name: string;
   link?: string;
   applicationLink?: string;
@@ -9,9 +9,7 @@ export function sanitize_data(bursary: string): Bursary {
   const title = separator(bursary);
   const title_array = title.split(" ");
   const bursary_object: Bursary = {
-    closing: "",
     name: "",
-    link: "",
   };
 
   for (let index = 0; index < title_array.length; index++) {
@@ -22,6 +20,8 @@ export function sanitize_data(bursary: string): Bursary {
       bursary_object.closing = title_array.slice(index + 1).join(" ");
       title_array.length = index;
       bursary_object.name = title_array.join(" ");
+    } else {
+      bursary_object.name = bursary
     }
   }
 

@@ -1,11 +1,10 @@
 import express from "express";
+import { store as cache } from "../store";
 import { find_month } from "../utils/findMonth";
 import { get_bursary_data_by_month } from "../utils/getBursaryDataByMonth";
-import { get_data } from "../utils/getData";
-import { store as cache } from "../store"
+import { get_bursaries_data as get_data } from "../utils/getData";
 
 const router = express.Router();
-
 
 router.get(
   "/:bursaryMonth",

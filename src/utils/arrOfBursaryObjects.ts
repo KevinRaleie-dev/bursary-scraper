@@ -3,7 +3,7 @@ import { sanitize_data, Bursary } from "./sanitizeData";
 export function array_bursary_objects(
   bursaries: string[],
   urlLinks: string[],
-  appLinks: string[]
+  appLinks: string[] | null
 ): Bursary[] {
   const bursary_object_array: Bursary[] = [];
 
@@ -16,9 +16,10 @@ export function array_bursary_objects(
     bursary_object_array[index].link = urlLinks[index];
   }
 
-  for (const index in bursary_object_array) {
-    bursary_object_array[index].applicationLink = appLinks[index];
+  if (appLinks !== null) {
+    for (const index in bursary_object_array) {
+      bursary_object_array[index].applicationLink = appLinks[index];
+    }
   }
-
   return bursary_object_array;
 }

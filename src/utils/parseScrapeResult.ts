@@ -6,11 +6,35 @@ type BursData = {
   links: string[];
 };
 
+export const parse_course_result = (data: string) => {
+	const $ = load(data)
+	const course_data: BursData = {
+		title: "",
+		bursaries: [],
+		links: []
+	}
+
+	course_data.title = $(".entry-content > h1").text()
+
+	$(".entry-content > ul > li").each((_, el) => {
+		course_data.bursaries.push($(el).text())
+	})
+
+  $(".entry-content > ul > li > a").each((_, el) => {
+    const href = $(el).attr("href")
+    if(href) {
+      course_data.links.push(href)
+    }
+  })
+
+	return course_data
+}
+
 export const parse_result = async (data: string) => {
   const $ = load(data);
   const bursaryData: BursData = {
     title: "",
-    bursaries: [],
+  bursaries: [],
     links: [],
   };
 

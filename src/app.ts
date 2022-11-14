@@ -1,9 +1,10 @@
-import express from "express";
 import cors from "cors";
-import morgan from "morgan";
+import express from "express";
 import { rateLimit } from "express-rate-limit";
-import bursary from "./routes/bursary.route";
-import health_check from "./routes/bursary.route";
+import morgan from "morgan";
+import { default as bursary, default as health_check } from "./routes/bursary.route";
+import course from "./routes/course.route";
+import courses from "./routes/courses.route"
 
 export const app = express();
 
@@ -28,3 +29,5 @@ app.use(
 
 app.use("/health-check", health_check);
 app.use("/bursaries", bursary);
+app.use("/course", course)
+app.use("/courses", courses)
