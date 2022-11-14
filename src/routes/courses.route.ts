@@ -34,7 +34,9 @@ router.get("/all", async (_, res: express.Response) => {
             })
         })
 
-        res.status(200).json(coursesData)
+        res.status(200).json({
+            data: coursesData
+        })
     } catch (error) {
         res.status(503).json({
             message: "An error occured",
