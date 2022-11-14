@@ -7,8 +7,6 @@ export async function find_link(course: string): Promise<string | null> {
 
   const found = tags.find((item) => item === course);
 
-  console.log(found)
-
   if (found) {
     // decrementing only because theres two instances of science in the array
     // and computer-science appears first
