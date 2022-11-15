@@ -12,6 +12,7 @@ app.use(
   cors({
     origin: [
       process.env.PROD_CLIENT_URL as string,
+      process.env.PROD_CLIENT_NIVO_URL as string,
       process.env.DEV_CLIENT_URL as string,
     ],
   })
