@@ -11,5 +11,5 @@ export const get_bursary_data_by_month = (bursary_month: string) => {
     return error;
   }
 
-  return `https://www.zabursaries.co.za/bursaries-closing-in-${found_month}-2022/`;
+  return `https://www.zabursaries.co.za/bursaries-closing-in-${found_month}-2023/`;
 };
