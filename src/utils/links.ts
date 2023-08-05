@@ -1,5 +1,5 @@
-export let links: string[] = [];
-
 export function setLinks(arr: string[]) {
-    links = [...arr];
+    const links: string [] = [];
+
+	return links.push(...arr);
 }

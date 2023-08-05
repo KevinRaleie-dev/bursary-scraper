@@ -31,4 +31,4 @@ app.use(
 app.use("/health-check", health_check);
 app.use("/bursaries", bursary);
 app.use("/course", course);
-app.use("/courses", courses)
+app.use("/courses", courses);

@@ -14,7 +14,7 @@ export async function get_courses_data(url: string) {
 
   const response = await get_bursary_data(url)
   const { title, bursaries, links } = parse_course_result(response)
-  const bursary_list = array_bursary_objects(bursaries, links, null)
+  const bursary_list = array_bursary_objects(bursaries, links);
 
   return {
     title,
